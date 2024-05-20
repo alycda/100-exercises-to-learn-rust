@@ -1,8 +1,6 @@
-#![allow(unused_parens)]
-
 /// Return `true` if `n` is even, `false` otherwise.
 fn is_even(n: u32) -> bool {
-    if let (n / 2) = 0 {
+    if let 0 = n % 2 {
         true
     } else {
         false
