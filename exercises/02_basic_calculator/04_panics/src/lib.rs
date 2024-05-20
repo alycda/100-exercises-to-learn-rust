@@ -3,17 +3,11 @@
 fn speed(start: u32, end: u32, time_elapsed: u32) -> u32 {
     // TODO: Panic with a custom message if `time_elapsed` is 0
 
-    // if(time_elapsed == 0) {
-
-    // }
-
-    let out = if let 0 = time_elapsed {
-        None
-    } else {
-        Some((end - start) / time_elapsed)
-    };
-
-    out.expect("The journey took no time at all, that's impossible!")
+    if(time_elapsed == 0) {
+        panic!("The journey took no time at all, that's impossible!")
+    }
+    
+    (end - start) / time_elapsed
 }
 
 #[cfg(test)]
