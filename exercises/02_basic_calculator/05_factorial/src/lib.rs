@@ -11,11 +11,10 @@
 // Use only what you learned! No loops yet, so you'll have to use recursion!
 
 fn factorial(n: u32) -> u32 {
-    if n == 0 {
-        return 1;
+    match n {
+        0 => 1,
+        _ => n + factorial(n - 1)
     }
-
-    n + factorial(n - 1)
 }
 
 #[cfg(test)]
