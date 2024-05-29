@@ -7,21 +7,14 @@ use thiserror::Error;
 
 #[derive(Debug, Error)]
 enum TicketNewError {
+    #[error("Title cannot be empty")]
     TitleCannotBeEmpty,
+    #[error("Title cannot be longer than 50 characters")]
     TitleTooLong,
+    #[error("Description cannot be empty")]
     DescriptionCannotBeEmpty,
+    #[error("Description cannot be longer than 500 characters")]
     DescriptionTooLong,
-}
-
-impl std::fmt::Display for TicketNewError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            TicketNewError::TitleCannotBeEmpty => write!(f, "Title cannot be empty"),
-            TicketNewError::TitleTooLong => write!(f, "Title cannot be longer than 50 characters"),
-            TicketNewError::DescriptionCannotBeEmpty => write!(f, "Description cannot be empty"),
-            TicketNewError::DescriptionTooLong => write!(f, "Description cannot be longer than 500 characters"),
-        }
-    }
 }
 
 #[derive(Debug, PartialEq, Clone)]
