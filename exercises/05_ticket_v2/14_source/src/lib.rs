@@ -23,11 +23,8 @@ pub enum TicketNewError {
     DescriptionCannotBeEmpty,
     #[error("Description cannot be longer than 500 characters")]
     DescriptionTooLong,
-    #[error("Hello world")]
-    InvalidString {
-        #[source]
-        thing: ParseStatusError,
-    }
+    #[error("{0}")]
+    InvalidStatus(#[from] ParseStatusError),
 }
 
 #[derive(Debug, PartialEq, Clone)]
