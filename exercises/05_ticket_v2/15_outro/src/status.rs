@@ -12,7 +12,7 @@ impl TryFrom<String> for Status {
     type Error = &'static str;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        value.try_into().to_string()
+        value.as_str().try_into()
     }
 }
 
