@@ -9,6 +9,13 @@ impl TryFrom<String> for TicketTitle {
     type Error = &'static str;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
+        if value.len() == 0 {
+            return Err("The title cannot be empty");
+        }
+        if value.len() > 50 {
+            return Err("The title cannot be longer than 50 characters");
+        }
+
         Ok(TicketTitle(value))
     }
 }
@@ -33,14 +40,12 @@ mod tests {
         assert_eq!(title.0, "A title");
     }
 
-    #[ignore]
     #[test]
     fn test_try_from_empty_string() {
         let err = TicketTitle::try_from("".to_string()).unwrap_err();
         assert_eq!(err.to_string(), "The title cannot be empty");
     }
 
-    #[ignore]
     #[test]
     fn test_try_from_long_string() {
         let title =
