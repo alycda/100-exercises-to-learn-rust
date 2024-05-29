@@ -16,7 +16,7 @@ impl Display for TicketNewError {
         // write!(f, "{}", &self.0)
         match self {
             TicketNewError::TitleError(message) => write!(f, "{}", message),
-            TicketNewError::DescriptionError(message) => write!(f, "{}", message),
+            TicketNewError::DescriptionError(message) => write!(f, "Description error: {}", message),
         }
     }
 }
@@ -28,7 +28,13 @@ impl std::error::Error for TicketNewError {}
 //   When the description is invalid, instead, it should use a default description:
 //   "Description not provided".
 fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
-    todo!()
+    match Ticket::new(title.clone(), description, status.clone()) {
+        Ok(ticket) => ticket,
+        Err(TicketNewError::TitleError(msg)) => { panic!("{msg}") },
+        Err(TicketNewError::DescriptionError(_msg)) => {
+            Ticket::new(title, "Description not provided".to_string(), status).unwrap()
+        },
+    }
 }
 
 #[derive(Debug, PartialEq, Clone)]
