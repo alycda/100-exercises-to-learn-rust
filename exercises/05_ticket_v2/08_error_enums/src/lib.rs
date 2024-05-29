@@ -16,7 +16,7 @@ fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
         Ok(ticket) => ticket,
         // Err(message) => panic!("{:?}", message),
         Err(TicketNewError::DescriptionError(message)) => {panic!(message)},
-        Err(TicketNewError::TitleError(message)) => {panic!(message)},
+        Err(TicketNewError::TitleError(message)) => {panic!("{message}")},
     }
 }
 
