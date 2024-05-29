@@ -5,12 +5,27 @@
 #[derive(Debug, PartialEq, Clone)]
 pub struct TicketDescription(String);
 
+impl TryFrom<String> for TicketDescription {
+    type Error = &'static str;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        Ok(TicketDescription(value))
+    }
+}
+
+impl TryFrom<&str> for TicketDescription {
+    type Error = &'static str;
+
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        Ok(TicketDescription(value.to_string()))
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use std::convert::TryFrom;
 
-    #[ignore]
     #[test]
     fn test_try_from_string() {
         let description = TicketDescription::try_from("A description".to_string()).unwrap();
@@ -35,7 +50,6 @@ mod tests {
         );
     }
 
-    #[ignore]
     #[test]
     fn test_try_from_str() {
         let description = TicketDescription::try_from("A description").unwrap();
