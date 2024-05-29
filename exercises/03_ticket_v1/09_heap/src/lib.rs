@@ -11,7 +11,7 @@ mod tests {
     use super::Ticket;
     use std::mem::size_of;
 
-    let my_mem = size_of::<usize>();
+    const my_mem:usize = size_of::<usize>();
 
     #[test]
     fn string_size() {

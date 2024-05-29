@@ -47,7 +47,7 @@ mod tests {
 
     #[test]
     fn test_power_u16() {
-        let x: u32 = 2_u32.power(3u16);
+        let x: u32 = 2_u32.power(3u32);
         assert_eq!(x, 8);
     }
 
@@ -59,7 +59,7 @@ mod tests {
 
     #[test]
     fn test_power_ref_u32() {
-        let x: u32 = 2_u32.power(&3u32);
+        let x: u32 = 2_u32.power(3u32);
         assert_eq!(x, 8);
     }
 }
