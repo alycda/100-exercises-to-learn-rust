@@ -13,13 +13,15 @@ enum TicketNewError {
 
 impl Display for TicketNewError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", &self.0)
+        // write!(f, "{}", &self.0)
+        match self {
+            TicketNewError::TitleError(message) => write!(f, "{}", message),
+            TicketNewError::DescriptionError(message) => write!(f, "{}", message),
+        }
     }
 }
 
-impl std::error::Error for TicketNewError {
-
-}
+impl std::error::Error for TicketNewError {}
 
 // TODO: `easy_ticket` should panic when the title is invalid, using the error message
 //   stored inside the relevant variant of the `TicketNewError` enum.
