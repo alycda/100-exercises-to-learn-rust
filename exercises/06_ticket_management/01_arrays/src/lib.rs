@@ -17,34 +17,28 @@ pub enum Weekday {
 impl WeekTemperatures {
     pub fn new() -> Self {
         WeekTemperatures {
-            days: [None, None, None, None, None, None, None],
+            days: [None; 7],
         }
     }
 
     pub fn get_temperature(&self, day: Weekday) -> Option<i32> {
-        match day {
-            Weekday::Sunday => self.days[0],
-            Weekday::Monday => self.days[1],
-            Weekday::Tuesday => self.days[2],
-            Weekday::Wednesday => self.days[3],
-            Weekday::Thursday => self.days[4],
-            Weekday::Friday => self.days[5],
-            Weekday::Saturday => self.days[6],
-        }
+        self.days[weekday_to_index(day)]
     }
 
     pub fn set_temperature(&mut self, day: Weekday, temperature: i32) {
-        let index = match day {
-            Weekday::Sunday => 0,
-            Weekday::Monday => 1,
-            Weekday::Tuesday => 2,
-            Weekday::Wednesday => 3,
-            Weekday::Thursday => 4,
-            Weekday::Friday => 5,
-            Weekday::Saturday => 6,
-        }
+        self.days[weekday_to_index(day)] = Some(temperature);
+    }
+}
 
-        &self.days[index] = temperature;
+fn weekday_to_index(day: Weekday) -> usize {
+    match day {
+        Weekday::Sunday => 0,
+        Weekday::Monday => 1,
+        Weekday::Tuesday => 2,
+        Weekday::Wednesday => 3,
+        Weekday::Thursday => 4,
+        Weekday::Friday => 5,
+        Weekday::Saturday => 6,
     }
 }
 
