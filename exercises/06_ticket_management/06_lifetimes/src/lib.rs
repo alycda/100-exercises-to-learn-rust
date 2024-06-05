@@ -36,12 +36,12 @@ impl TicketStore {
     }
 }
 
-impl<'a> IntoIterator for &'a TicketStore {
+impl<'a> IntoIterator for &TicketStore {
     type Item<'a> = &'a Ticket;
     type IntoIter = std::vec::IntoIter<'a, Self::Item>;
 
     fn into_iter(self) -> Self::IntoIter {
-        self.tickets.iter()
+        self.tickets.into_iter()
     }
 }
 
