@@ -38,7 +38,7 @@ impl TicketStore {
 
 impl<'a> IntoIterator for &'a TicketStore {
     type Item = &'a Ticket;
-    type IntoIter = std::slice::Iter<'a, Self::Item>;
+    type IntoIter = std::slice::Iter<Self::Item>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.tickets.iter()
