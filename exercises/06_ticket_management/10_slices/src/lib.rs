@@ -2,7 +2,7 @@
 //  elements in the slice.
 
 pub fn sum(summands: &[u32]) -> u32 {
-    summands.iter().sum::<u32>()
+    summands.iter().sum()
 }
 
 #[cfg(test)]
