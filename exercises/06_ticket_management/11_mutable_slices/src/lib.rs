@@ -2,8 +2,8 @@
 //  modifying the input in place.
 //  Does it need to take a `&mut String`? Does a `&mut [str]` work? Why or why not?
 
-pub fn lowercase(letters: &mut str) -> Vec<char> {
-    letters.chars().map(|c| c.to_ascii_lowercase()).collect::<Vec<_>>()
+pub fn lowercase(letters: &mut str) {
+    letters.make_ascii_lowercase()
 }
 
 #[cfg(test)]
