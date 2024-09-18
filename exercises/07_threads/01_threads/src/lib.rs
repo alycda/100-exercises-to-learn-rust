@@ -14,8 +14,25 @@
 // this is necessary in the next exercise.
 use std::thread;
 
-pub fn sum(v: Vec<i32>) -> i32 {
-    todo!()
+pub fn sum(mut v: Vec<i32>) -> i32 {
+    // println!("here: {}", v.len()/2);
+
+    // split the vec into 2 parts
+    let u: Vec<_> = v.drain(&v.len()/2..).collect();
+
+    println!("{:?}, {:?}", &v, &u);
+    // println!("{:?}, {:?}", v.iter().sum::<i32>(), u.iter().sum::<i32>());
+    // println!("{:?}", v.iter().sum::<i32>());
+
+    let handle = thread::spawn(move || {
+        // println!("{:?}", u.iter().sum::<i32>());
+        u.iter().sum::<i32>()
+    });
+
+    let c = handle.join().unwrap();
+    println!("c: {c}");
+
+    c + v.iter().sum::<i32>()
 }
 
 #[cfg(test)]
