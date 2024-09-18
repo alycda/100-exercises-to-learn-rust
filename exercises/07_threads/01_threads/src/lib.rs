@@ -29,10 +29,10 @@ pub fn sum(mut v: Vec<i32>) -> i32 {
         u.iter().sum::<i32>()
     });
 
-    let c = handle.join().unwrap();
-    println!("c: {c}");
+    let x = handle.join().unwrap();
+    println!("x: {x}");
 
-    c + v.iter().sum::<i32>()
+    x + v.iter().sum::<i32>()
 }
 
 #[cfg(test)]
