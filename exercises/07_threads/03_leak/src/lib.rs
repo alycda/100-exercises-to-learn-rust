@@ -6,7 +6,15 @@
 use std::thread;
 
 pub fn sum(v: Vec<i32>) -> i32 {
-    todo!()
+    let slice = Vec::leak(v);
+
+    let a = &slice[..slice.len()/2];
+    let b = &slice[slice.len()/2..];
+
+    let handle = thread::spawn(|| a.iter().sum::<i32>() );
+    let c = handle.join().unwrap();
+
+    b.iter().sum::<i32>() + c
 }
 
 #[cfg(test)]
